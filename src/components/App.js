@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Header from './Header';
+import PositionList from './PositionList';
+import Search from './Search';
 
 
 
 function App() {
 
+  const [positions, setPositions] = useState([])
+
+  useEffect(() =>{
+    fetch("http://localhost:3000/positions")
+    .then((resp) => resp.json())
+    .then(positions => setPositions(positions))
+  
+  },[])
 
   return (
-      <header>
-        <h1>Hello World!</h1>
-      </header>
+    <main>
+      <Header/>
+      <Search/>
+      <PositionList positions={positions}/>
+
+    </main>
   );
 }
 

@@ -1,0 +1,35 @@
+{
+    "positions": [
+        {
+            "id": 1,
+            "positionName": "Software Developer",
+            "Salary": "112.000 p/year",
+            "Area": "Information Technology"
+        },
+        {
+            "id": 2,
+            "positionName": "Human Resources Manager",
+            "Salary": "80.000 p/year",
+            "Area": "Human Resources"
+        },
+        {
+            "id": 3,
+            "positionName": "Marketing Manager",
+            "Salary": "90.000 p/year",
+            "Area": "Marketing"
+        },
+        {
+            "id": 4,
+            "positionName": "Sales Representative",
+            "Salary": "87.000 p/year",
+            "Area": "Sales"
+        },
+        {
+            "id": 5,
+            "positionName": "Accountant",
+            "Salary": "75.000 p/year",
+            "Area": "Accounting"
+        }
+
+    ]
+}
