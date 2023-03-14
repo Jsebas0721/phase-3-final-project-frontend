@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Header from './Header';
-import PositionList from './PositionList';
+import AreaList from './AreaList';
 import Search from './Search';
 
 
 
 function App() {
 
-  const [positions, setPositions] = useState([])
+  const [areas, setAreas] = useState([])
 
   useEffect(() =>{
-    fetch("http://localhost:3000/positions")
+    fetch("http://localhost:9292/areas")
     .then((resp) => resp.json())
-    .then(positions => setPositions(positions))
+    .then(areas => setAreas(areas))
   
   },[])
 
@@ -20,8 +20,7 @@ function App() {
     <main>
       <Header/>
       <Search/>
-      <PositionList positions={positions}/>
-
+      <AreaList areas={areas}/>
     </main>
   );
 }
