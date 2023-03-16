@@ -2,14 +2,12 @@ import React from "react";
 
 function Position({position}){
 
-    const { id, positionName, salary, area} = position;
+    const { id, position_name, salary, area} = position;
 
     console.log(position)
     return(
         <li>
-            <h3>{positionName}</h3>
-            <p>{salary}</p>
-            <p>{area}</p>
+            <p>{position_name}</p> <span>{salary}</span>
         </li>
     )
 }

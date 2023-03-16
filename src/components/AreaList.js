@@ -1,14 +1,15 @@
 import React from "react";
 import Area from "./Area";
 
-function AreaList({areas}){
+function AreaList({areas, setPositions}){
 
-    console.log(areas)
+    
     return (
         <div>
+            <h1>Areas</h1>
             <ul>
             {areas.map((area) => (
-                <Area key={area.id} area={area}/>
+                <Area key={area.id} area={area} setPositions={setPositions}/>
             ))} 
             </ul>
         </div>

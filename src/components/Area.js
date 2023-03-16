@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink} from "react-router-dom";
 
-function Area({area}){
 
-    const { id, area_name} = area;
+function Area({area, setPositions}){
 
     
-    console.log(area_name)
-    return(
-        <li>
-            <h3>{area_name}</h3>
-        </li>
+   
+    const { id, area_name} = area;
+
+    function handleClick(){
+        fetch(`http://localhost:9292/areas/${id}`)
+        .then((resp) => resp.json())
+        .then((area) => {
+            
+            setPositions(area.positions)
+            console.log(area.positions)
+        })
+    }
+   
+    
+    return(  
+        <nav>
+            <NavLink exact to="/positions" onClick={handleClick}>{area_name}</NavLink>
+            <hr/>
+        </nav>       
     )
+    
 }
 
 export default Area;

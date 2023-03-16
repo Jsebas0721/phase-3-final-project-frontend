@@ -5,11 +5,12 @@ function PositionList({positions}){
 
     console.log(positions)
     return (
-        <div>
+        <div>   
+            <h2>Open Positions:</h2>
             <ul>
-                {positions.map((position) => {
-                <Position position={position}/>
-                })}
+            {positions.map((position) => (
+                <Position key={position.id} position={position}/>
+            ))}
             </ul>
         </div>
     );
