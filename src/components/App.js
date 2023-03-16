@@ -4,6 +4,7 @@ import AreaList from './AreaList';
 import Search from './Search';
 import { Route, Switch } from 'react-router-dom';
 import PositionList from './PositionList';
+import NewPosition from './NewPosition';
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Switch>
         <Route path="/positions">
           <Search/>
+          <NewPosition/>
           <PositionList positions={positions}/>
         </Route>
         <Route exact path="/">

@@ -2,13 +2,17 @@ import React from "react";
 
 function Position({position}){
 
-    const { id, position_name, salary, area} = position;
+    const {position_name, salary} = position;
 
     console.log(position)
     return(
-        <li>
-            <p>{position_name}</p> <span>{salary}</span>
-        </li>
+        <div className="display-positions">
+             <span>{position_name}</span>
+             <span> Salary: {parseFloat(salary).toFixed(3)}/year </span>
+             <button>Update</button>
+             <button>Delete</button>
+             <hr/>
+        </div>
     )
 }
 
