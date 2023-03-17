@@ -1,12 +1,23 @@
 import React, { useState} from "react";
 import UpdatePosition from "./UpdatePosition";
 
-function Position({position}){
+function Position({position, onUpdatePosition, onDeletePosition}){
 
     const [isUpdating, setIsUpdating] = useState(false);
     const {id, position_name, salary} = position;
-    console.log(isUpdating)
-    console.log(position)
+    
+
+    function handleIsUpdating(updatedPos){
+        setIsUpdating(false)
+        onUpdatePosition(updatedPos)
+    }
+    function handleDeletePosition(){
+        fetch(`http://localhost:9292/positions/${id}`,{
+            method: "DELETE",
+        });
+
+        onDeletePosition(id)
+    }
     return(
         <div className="display-positions">
              {isUpdating ? (
@@ -14,6 +25,7 @@ function Position({position}){
                 id={id}
                 positionName={position_name}
                 salary={salary}
+                onUpdatePosition={handleIsUpdating}
                 />
              ) : (
                 <div>
@@ -22,7 +34,7 @@ function Position({position}){
                 </div>
              )}
              <button onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>Update</button>
-             <button>Delete</button>
+             <button onClick={handleDeletePosition}>Delete</button>
              <hr/>
         </div>
     )

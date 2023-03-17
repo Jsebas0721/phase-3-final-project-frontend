@@ -1,23 +1,33 @@
 import React, {useState} from "react";
 
-function UpdatePosition({id, positionName, salary}){
+function UpdatePosition({id, positionName, salary, onUpdatePosition}){
 
     const [positionData, setPositionData] = useState({
         id: id,
         position_name: positionName,
         salary: salary
-    })
+    });
 
 
-    function handleFormSubmit(){
+    function handleFormSubmit(e){
+        e.preventDefault();
         
+        fetch(`http://localhost:9292/positions/${id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(positionData),
+        })
+        .then((resp) => resp.json())
+        .then((updatedPos) => onUpdatePosition(updatedPos))
     }
 
     function handleChange(e){
         setPositionData({
             ...positionData,
             [e.target.name]: e.target.value
-        })
+        });
     }
     return (
         <form onSubmit={handleFormSubmit}>
@@ -28,7 +38,7 @@ function UpdatePosition({id, positionName, salary}){
             onChange={handleChange}
             />
             <input
-            type="integer"
+            type="number"
             name="salary"
             value={positionData.salary}
             onChange={handleChange}

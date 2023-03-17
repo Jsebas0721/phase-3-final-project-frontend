@@ -1,7 +1,7 @@
 import React from "react";
 import Position from "./Position";
 
-function PositionList({positions}){
+function PositionList({positions, onUpdatePosition, onDeletePosition}){
 
     console.log(positions)
     return (
@@ -9,7 +9,7 @@ function PositionList({positions}){
             <h2>Open Positions:</h2>
             <ul>
             {positions.map((position) => (
-                <Position key={position.id} position={position}/>
+                <Position key={position.id} position={position} onUpdatePosition={onUpdatePosition} onDeletePosition={onDeletePosition}/>
             ))}
             </ul>
         </div>

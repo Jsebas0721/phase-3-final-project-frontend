@@ -22,7 +22,17 @@ function App() {
   
   },[])
 
-  
+  function handleUpdatePosition(updatedPos){
+    const updatedPositions = positions.map((pos) => {
+      if(pos.id === updatedPos.id){
+        return updatedPos;
+      }else{
+        return pos;
+      }
+    });
+    setPositions(updatedPositions);
+  }
+
   return (
     <main>
       <Header/>
@@ -30,7 +40,7 @@ function App() {
         <Route path="/positions">
           <Search/>
           <NewPosition/>
-          <PositionList positions={positions}/>
+          <PositionList positions={positions} onUpdatePosition={handleUpdatePosition}/>
         </Route>
         <Route exact path="/">
           <AreaList areas={areas} setPositions={setPositions}/>
