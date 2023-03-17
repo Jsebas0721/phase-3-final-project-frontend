@@ -33,6 +33,11 @@ function App() {
     setPositions(updatedPositions);
   }
 
+  function handleDeletePosition(positionId){
+    const updatedPositions = positions.filter((pos)=> pos.id !== positionId)
+    setPositions(updatedPositions)
+  }
+
   return (
     <main>
       <Header/>
@@ -40,7 +45,7 @@ function App() {
         <Route path="/positions">
           <Search/>
           <NewPosition/>
-          <PositionList positions={positions} onUpdatePosition={handleUpdatePosition}/>
+          <PositionList positions={positions} onUpdatePosition={handleUpdatePosition} onDeletePosition={handleDeletePosition}/>
         </Route>
         <Route exact path="/">
           <AreaList areas={areas} setPositions={setPositions}/>
