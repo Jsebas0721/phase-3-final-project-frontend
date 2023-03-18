@@ -4,15 +4,17 @@ import AreaList from './AreaList';
 import Search from './Search';
 import { Route, Switch } from 'react-router-dom';
 import PositionList from './PositionList';
-import NewPosition from './NewPosition';
+
 
 
 
 function App() {
 
   const [areas, setAreas] = useState([])
+  const [currentArea, setCurrentArea] = useState({})
   const [positions, setPositions] = useState([])
 
+  
   useEffect(() =>{
     fetch("http://localhost:9292/areas")
     .then((resp) => resp.json())
@@ -31,24 +33,40 @@ function App() {
       }
     });
     setPositions(updatedPositions);
+    console.log("Position Updated: ", updatedPos)
   }
 
   function handleDeletePosition(positionId){
     const updatedPositions = positions.filter((pos)=> pos.id !== positionId)
     setPositions(updatedPositions)
+    
+  }
+  function handleAddPosition(newPosition){
+    setPositions([...positions,newPosition])
+    console.log("Position Created: ", newPosition)
   }
 
+  function handleAddArea(newArea){
+    setAreas([...areas, newArea])
+    console.log("Area Created: ", newArea)
+  }
+  
+  
   return (
     <main>
       <Header/>
       <Switch>
-        <Route path="/positions">
+        <Route exact path={`/${currentArea.area_name}/positions`}>
           <Search/>
-          <NewPosition/>
-          <PositionList positions={positions} onUpdatePosition={handleUpdatePosition} onDeletePosition={handleDeletePosition}/>
+          <PositionList 
+           positions={positions}
+           currentArea={currentArea}
+           onUpdatePosition={handleUpdatePosition} 
+           onDeletePosition={handleDeletePosition} 
+           onAddPosition={handleAddPosition}/>
         </Route>
         <Route exact path="/">
-          <AreaList areas={areas} setPositions={setPositions}/>
+          <AreaList areas={areas} setPositions={setPositions} setCurrentArea={setCurrentArea} onAddArea={handleAddArea}/>
         </Route>
       </Switch>
     </main>
