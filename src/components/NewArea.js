@@ -20,6 +20,13 @@ function NewArea({onAddArea}){
         .then((newArea) => onAddArea(newArea))
 
     }
+
+    function handleChange(e){
+        setAreaData({
+            ...areaData,
+            [e.target.name]: e.target.value
+        })
+    }
     return (
         <form onSubmit={handleSubmit}>
             <input
