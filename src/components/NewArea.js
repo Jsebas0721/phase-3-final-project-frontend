@@ -7,9 +7,9 @@ function NewArea({onAddArea}){
     })
 
     function handleSubmit(e){
-        e.preventDefaul();
+        e.preventDefault();
 
-        fetch(`http://localhost:9292/areas`, {
+        fetch("http://localhost:9292/areas", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -17,7 +17,10 @@ function NewArea({onAddArea}){
             body: JSON.stringify(areaData)
         })
         .then((resp) => resp.json())
-        .then((newArea) => onAddArea(newArea))
+        .then((newArea) => {
+            console.log(newArea)
+            onAddArea(newArea)
+        })
 
     }
 
@@ -28,15 +31,16 @@ function NewArea({onAddArea}){
         })
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="new-area-form" onSubmit={handleSubmit}>
+            <span>Add New Area: </span>
             <input
             type="text"
             name="area_name"
-            placeholder="Enter Position Name.."
+            placeholder="Enter Area Name.."
             value={areaData.area_name}
             onChange={handleChange}
             />
-            <button type="Submit">Add Position</button>
+            <button type="Submit">Add Area</button>
        </form>
     );
 }

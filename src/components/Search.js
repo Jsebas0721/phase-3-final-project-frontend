@@ -1,20 +1,20 @@
 import React from "react";
 
-function Search(){
+function Search({search, onSetSearch}){
 
     return (
-        <nav>
-            <h2>Search</h2>
+        <div className="search-bar">
+            <span>Search:  </span>
             <input
-             type="text"
-             name="search"
-             placeholder="Search..."
-             autoComplete="off"
-            //  value={search}
-            //  onChange={e => onSearchChange(e.target.value)}
-             />
+                type="text"
+                name="search"
+                placeholder="Search Positions..."
+                autoComplete="off"
+                value={search}
+                onChange={(e) => onSetSearch(e.target.value)}
+            />
              <hr/>
-        </nav>
+        </div>
     )
 }
 

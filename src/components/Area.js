@@ -4,12 +4,15 @@ import { NavLink} from "react-router-dom";
 
 function Area({area, setPositions, setCurrentArea}){
 
-    
-    
     const { id, area_name} = area;
     
+    const linkStyles ={
+        color: "white",
+    }
     
     function handleClick(){
+        
+        
         fetch(`http://localhost:9292/areas/${id}`)
         .then((resp) => resp.json())
         .then((area) => {
@@ -20,7 +23,10 @@ function Area({area, setPositions, setCurrentArea}){
     
     return(  
         <nav>
-            <NavLink exact to={`/${area_name}/positions`} onClick={handleClick}>{area_name}</NavLink>
+            <NavLink 
+            exact to={`/${area_name}/positions`} 
+            style={linkStyles}
+            onClick={handleClick}>{area_name}</NavLink>
         </nav>       
     )
     

@@ -12,9 +12,10 @@ function PositionList({positions, currentArea, onUpdatePosition, onDeletePositio
     }
   
     return (
-        <div>
-            <NewPosition currentArea={currentArea} onAddPosition={onAddPosition}/>   
+        <div className="position-container">
             <h2>Open Positions:</h2>
+            <NewPosition currentArea={currentArea} onAddPosition={onAddPosition}/>  
+            <hr/> 
             <ul>
             {positions.map((position) => (
                 <Position key={position.id} position={position} onUpdatePosition={onUpdatePosition} onDeletePosition={onDeletePosition}/>

@@ -29,7 +29,7 @@ function Position({position, onUpdatePosition, onDeletePosition}){
                 />
              ) : (
                 <div>
-                    <span>{position_name}</span>
+                    <span>{position_name} -  </span>
                     <span> Salary: {parseFloat(salary).toFixed(3)}/year </span>
                 </div>
              )}

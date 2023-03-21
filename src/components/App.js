@@ -13,6 +13,7 @@ function App() {
   const [areas, setAreas] = useState([])
   const [currentArea, setCurrentArea] = useState({})
   const [positions, setPositions] = useState([])
+  const [search, setSearch] = useState("")
 
   
   useEffect(() =>{
@@ -24,6 +25,7 @@ function App() {
   
   },[])
 
+  
   function handleUpdatePosition(updatedPos){
     const updatedPositions = positions.map((pos) => {
       if(pos.id === updatedPos.id){
@@ -35,7 +37,7 @@ function App() {
     setPositions(updatedPositions);
     console.log("Position Updated: ", updatedPos)
   }
-
+  
   function handleDeletePosition(positionId){
     const updatedPositions = positions.filter((pos)=> pos.id !== positionId)
     setPositions(updatedPositions)
@@ -45,21 +47,25 @@ function App() {
     setPositions([...positions,newPosition])
     console.log("Position Created: ", newPosition)
   }
-
+  
   function handleAddArea(newArea){
     setAreas([...areas, newArea])
     console.log("Area Created: ", newArea)
   }
   
+  const displayPositions = positions.filter((position) => 
+    position.position_name.toLowerCase().includes(search.toLowerCase())
+  )
   
   return (
     <main>
       <Header/>
+      <hr/>
       <Switch>
         <Route exact path={`/${currentArea.area_name}/positions`}>
-          <Search/>
+          <Search search={search} onSetSearch={setSearch}/>
           <PositionList 
-           positions={positions}
+           positions={displayPositions}
            currentArea={currentArea}
            onUpdatePosition={handleUpdatePosition} 
            onDeletePosition={handleDeletePosition} 

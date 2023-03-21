@@ -11,31 +11,43 @@ function NewPosition({currentArea, onAddPosition}){
 
 
     function handleSubmit(e) {
-        e.preventDefault();
+      e.preventDefault();
     
-        fetch("http://localhost:9292/positions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...positionData,
-            area_id: currentArea.id
+      fetch("http://localhost:9292/positions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...positionData,
+          area_id: currentArea.id
         }),
-        })
-          .then((resp) => resp.json())
-          .then((newPosition) => onAddPosition(newPosition));
+      })
+      .then((resp) => resp.json())
+      .then((newPosition) => {
+        if(newPosition.position_name !== "" && newPosition.salary !== ""){
+          onAddPosition(newPosition)
+          setPositionData({
+            position_name: "",
+            salary: ""
+          })
+        }else{
+          console.log("Please Enter Position name and Salary")
+        }
+      });
     }
 
-      function handleChange(e){
-        setPositionData({
-            ...positionData,
-            [e.target.name]: e.target.value
-        });
-      }
+    function handleChange(e){
+      setPositionData({
+          ...positionData,
+          [e.target.name]: e.target.value
+      });
+    }
 
     return (
-       <form onSubmit={handleSubmit}>
+      <div className="new-position-form">
+        <form onSubmit={handleSubmit}>
+            <span>Add New Position: </span>
             <input
             type="text"
             name="position_name"
@@ -51,7 +63,8 @@ function NewPosition({currentArea, onAddPosition}){
             onChange={handleChange}
             />
             <button type="Submit">Add Position</button>
-       </form>
+        </form>
+       </div>
     )
 
 }

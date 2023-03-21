@@ -1,10 +1,20 @@
-header h1 {
+header {
+  display: inline-flex;
   font-family: Arial, Helvetica, sans-serif;
-  color: black;
-  font-style: normal;
+  background-color: white;
+  
+}
+
+header img {
+  padding-top: 15px;
+  padding-left: 10px;
+  width: 70px;
+  height: 50px;
+  margin-right: 1615px;
 }
 
 body {
+  background-color: rgb(29, 70, 70);
   color: black;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,6 +29,44 @@ code {
     monospace;
 }
 
-.display-positions {
-  border-spacing: 10px;  
+.area-header {
+  display: inline-flex;
+  padding-left: 40px;
+  background-color: wheat;
 }
+
+.new-area-form {
+  padding-top: 35px;
+  padding-left: 1430px;
+  margin-right: 8px;
+}
+
+.area-container {
+  background-color: rgb(29, 70, 70);
+}
+
+.area-element {
+  color: azure;
+}
+
+.search-bar {
+  color: azure;
+
+}
+
+.new-position-form {
+  color: azure;
+  display: inline-flex;
+}
+
+.position-container {
+  color: azure;
+}
+
+.position-container h2  {
+  display: inline-flex;
+  padding-right: 1130px;
+}
+
+
+
