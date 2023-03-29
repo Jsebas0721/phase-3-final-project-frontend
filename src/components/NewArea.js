@@ -9,18 +9,22 @@ function NewArea({onAddArea}){
     function handleSubmit(e){
         e.preventDefault();
 
-        fetch("http://localhost:9292/areas", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(areaData)
-        })
-        .then((resp) => resp.json())
-        .then((newArea) => {
-            console.log(newArea)
-            onAddArea(newArea)
-        })
+        if(areaData.area_name){
+            fetch("http://localhost:9292/areas", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(areaData)
+            })
+            .then((resp) => resp.json())
+            .then((newArea) => {
+                console.log(newArea)
+                onAddArea(newArea)
+            })
+        }else{
+            alert("Please Enter an Area name.")
+        }
 
     }
 

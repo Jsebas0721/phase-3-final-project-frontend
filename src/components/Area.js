@@ -1,32 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink} from "react-router-dom";
 
 
-function Area({area, setPositions, setCurrentArea}){
+function Area({area, onSetCurrentArea, onSetPositions}){
 
-    const { id, area_name} = area;
     
+    const {area_name} = area;
     const linkStyles ={
         color: "white",
     }
     
     function handleClick(){
-        
-        
-        fetch(`http://localhost:9292/areas/${id}`)
-        .then((resp) => resp.json())
-        .then((area) => {
-            setCurrentArea(area)
-            setPositions(area.positions);
-        })
+            onSetCurrentArea(area)
+            onSetPositions(area.positions);  
     }
     
     return(  
         <nav>
-            <NavLink 
+            <NavLink
             exact to={`/${area_name}/positions`} 
             style={linkStyles}
-            onClick={handleClick}>{area_name}</NavLink>
+            onClick={handleClick}
+            >{area_name}</NavLink>
         </nav>       
     )
     

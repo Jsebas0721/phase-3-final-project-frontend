@@ -29,6 +29,15 @@ code {
     monospace;
 }
 
+hr {
+  height: 2px;
+  background-color:blanchedalmond;
+  border: none;
+}
+main h2{
+  color: blanchedalmond;
+}
+
 .area-header {
   display: inline-flex;
   padding-left: 40px;
@@ -36,9 +45,10 @@ code {
 }
 
 .new-area-form {
+  
   padding-top: 35px;
-  padding-left: 1430px;
-  margin-right: 8px;
+  padding-left: 1425px;
+  margin-right: 10px;
 }
 
 .area-container {
@@ -50,13 +60,16 @@ code {
 }
 
 .search-bar {
+  text-align: center;
   color: azure;
 
 }
 
 .new-position-form {
+  text-align: right;
+  padding-left: 850px;
   color: azure;
-  display: inline-flex;
+
 }
 
 .position-container {
@@ -65,7 +78,6 @@ code {
 
 .position-container h2  {
   display: inline-flex;
-  padding-right: 1130px;
 }
 
 

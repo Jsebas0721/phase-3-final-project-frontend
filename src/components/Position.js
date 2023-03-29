@@ -16,7 +16,7 @@ function Position({position, onUpdatePosition, onDeletePosition}){
             method: "DELETE",
         });
 
-        onDeletePosition(id)
+        onDeletePosition(position)
     }
     return(
         <div className="display-positions">

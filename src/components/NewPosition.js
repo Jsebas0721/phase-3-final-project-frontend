@@ -12,29 +12,29 @@ function NewPosition({currentArea, onAddPosition}){
 
     function handleSubmit(e) {
       e.preventDefault();
-    
-      fetch("http://localhost:9292/positions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...positionData,
-          area_id: currentArea.id
-        }),
-      })
-      .then((resp) => resp.json())
-      .then((newPosition) => {
-        if(newPosition.position_name !== "" && newPosition.salary !== ""){
-          onAddPosition(newPosition)
-          setPositionData({
-            position_name: "",
-            salary: ""
-          })
-        }else{
-          console.log("Please Enter Position name and Salary")
-        }
-      });
+      
+      if(positionData.position_name && positionData.salary){
+        fetch("http://localhost:9292/positions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...positionData,
+            area_id: currentArea.id
+          }),
+        })
+        .then((resp) => resp.json())
+        .then((newPosition) => {
+            onAddPosition(newPosition)
+            setPositionData({
+              position_name: "",
+              salary: ""
+            })
+        });
+      }else{
+        alert("Please Enter Position name and Salary.")
+      }
     }
 
     function handleChange(e){
