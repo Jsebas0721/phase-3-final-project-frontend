@@ -5,6 +5,7 @@ import Search from './Search';
 import NewPosition from './NewPosition';
 import { Route, Switch } from 'react-router-dom';
 import PositionList from './PositionList';
+import NewArea from './NewArea';
 
 
 
@@ -12,13 +13,16 @@ import PositionList from './PositionList';
 function App() {
 
   const [areas, setAreas] = useState([])
- const [positions, setPositions] = useState([])
-  const [search, setSearch] = useState("")
   const [currentArea, setCurrentArea] = useState({})
+  const [positions, setPositions] = useState([])
+  const [search, setSearch] = useState("")
   
   
   
-  useEffect(() =>{
+  useEffect(() => {
+
+    document.title = "Amazon Jobs";
+
     fetch("http://localhost:9292/areas")
     .then((resp) => resp.json())
     .then(areas => {
@@ -110,6 +114,10 @@ function App() {
           />
         </Route>
         <Route exact path="/">
+          <div className="area-header">
+              <h1>Areas</h1>
+              <NewArea onAddArea={handleAddArea}/>
+          </div>
           <AreaList areas={areas}  onSetCurrentArea={setCurrentArea} onSetPositions={setPositions} onAddArea={handleAddArea}/>
         </Route>
       </Switch>

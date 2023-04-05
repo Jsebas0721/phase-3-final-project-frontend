@@ -19,8 +19,10 @@ function NewArea({onAddArea}){
             })
             .then((resp) => resp.json())
             .then((newArea) => {
-                console.log(newArea)
                 onAddArea(newArea)
+                setAreaData({
+                    area_name: ""
+                })
             })
         }else{
             alert("Please Enter an Area name.")

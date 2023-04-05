@@ -4,7 +4,6 @@ import { NavLink} from "react-router-dom";
 
 function Area({area, onSetCurrentArea, onSetPositions}){
 
-    
     const {area_name} = area;
     const linkStyles ={
         color: "white",
@@ -12,7 +11,7 @@ function Area({area, onSetCurrentArea, onSetPositions}){
     
     function handleClick(){
             onSetCurrentArea(area)
-            onSetPositions(area.positions);  
+            onSetPositions(area.positions ? area.positions : area.positions = []);  
     }
     
     return(  
